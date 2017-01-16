@@ -112,9 +112,9 @@ gulp.task('styles', function() {
     .pipe(plumber())
     .pipe(less())
     .pipe(autoprefixer())
-    .pipe(gulpif(production, cssmin()))
-    .pipe(gulp.dest('public/css'));
+    .pipe(gulp.dest('./public/css'));
 });
+
 
 gulp.task('watch', function() {
   gulp.watch('app/stylesheets/**/*.less', ['styles']);
