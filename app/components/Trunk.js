@@ -29,25 +29,6 @@ class Trunk extends React.Component {
   }
 
   render() {
-    // var trunkArray = this.state.trunks.map((trunk, index)  =>  {
-    //   return (
-    //     <div key={trunk._id} >
-    //       <div>
-    //         <div className='caption text-center'>
-    //           <ul className='list-inline'>
-    //             <li>number 1</li>
-    //             <li><strong>Race:</strong> {trunk.title}</li>
-    //             <li><strong>Bloodline:</strong> {trunk.body}</li>
-    //           </ul>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // });
-
-    // console.log(trunkArray)
-    // console.log("second" + this.state.trunks);
-
     return (
       <div className='container'>
         <h2 className='text-center'>Trunks</h2>

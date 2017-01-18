@@ -11,7 +11,7 @@ class TrunkShow extends React.Component {
 
   componentDidMount() {
     TrunkShowStore.listen(this.onChange);
-    TrunkShowActions.getTrunkShow(this.props.params.id);
+    TrunkShowActions.getTrunkShow(this.props.props.params.id);
   }
 
   componentWillUnmount() {

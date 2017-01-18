@@ -17,6 +17,7 @@ var xml2js = require('xml2js');
 
 var mongoose = require('mongoose');
 var Trunk = require('./models/trunk');
+var Branch = require('./models/branch');
 var config = require('./config');
 
 mongoose.connect(config.database);
@@ -49,6 +50,32 @@ app.post('/api/trunk', function(req, res, next) {
         });
 
         trunk.save(function(err) {
+          if (err) return next(err);
+          res.send({ message: title + ' has been added successfully!' });
+        });
+    }
+  ]);
+});
+
+app.post('/api/branches/new', function(req, res, next) {
+  var parent_id = req.body.parent
+  var body = req.body.body;
+  var title = req.body.title;
+
+  var parser = new xml2js.Parser();
+
+  async.waterfall([
+    function(callback) {
+      callback(null, parent_id, title, body);
+    },
+    function(parent_id, title, body) {
+        var branch = new Branch({
+          parent_id: parent_id,
+          title: title,
+          body: body,
+        });
+
+        branch.save(function(err) {
           if (err) return next(err);
           res.send({ message: title + ' has been added successfully!' });
         });
