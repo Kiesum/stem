@@ -22,7 +22,7 @@
     "compression": "^1.6.0",
     "express": "^4.13.3",
     "history": "^1.13.0",
-    "mongoose": "^4.2.5",
+    "mongoose": "4.4.8",
     "morgan": "^1.6.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
@@ -57,4 +57,4 @@
     "watchify": "^3.6.0"
   },
   "license": "MIT"
-}
+} 

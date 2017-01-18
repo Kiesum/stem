@@ -68,6 +68,19 @@ app.get('/api/trunk', function(req, res, next) {
     });
 });
 
+app.get('/api/trunk/:id', function(req, res, next) {
+  var id = req.params.id;
+  mongoose.model('Trunk').findById(id, function(err, trunk) {
+    if (err) return next(err);
+
+    if (!trunk) {
+      return res.status(404).send({ message: 'Trunk not found.' });
+    }
+    res.send(trunk);
+  });
+});
+
+
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {
     if (err) {
