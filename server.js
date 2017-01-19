@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/api/trunk', function(req, res, next) {
+app.post('/api/trunks/new', function(req, res, next) {
   var body = req.body.body;
   var title = req.body.title;
 
@@ -83,7 +83,7 @@ app.post('/api/branches/new', function(req, res, next) {
   ]);
 });
 
-app.get('/api/trunk', function(req, res, next) {
+app.get('/api/trunks', function(req, res, next) {
   Trunk.find()
    .exec(function(err, trunks) {
       if (err) return next(err);
@@ -95,18 +95,65 @@ app.get('/api/trunk', function(req, res, next) {
     });
 });
 
-app.get('/api/trunk/:id', function(req, res, next) {
+app.get('/api/trunks/:id', function(req, res, next) {
   var id = req.params.id;
-  mongoose.model('Trunk').findById(id, function(err, trunk) {
-    if (err) return next(err);
 
-    if (!trunk) {
-      return res.status(404).send({ message: 'Trunk not found.' });
-    }
-    res.send(trunk);
-  });
+  async.waterfall([
+    function(callback) {
+      mongoose.model('Trunk').findById(id, function(err, trunk) {
+        if (err) return next(err);
+
+        if (!trunk) {
+          return res.status(404).send({ message: 'Trunk not found.' });
+        }
+        callback(null, trunk);
+      });
+      },
+      function(trunk) {
+        mongoose.model('Branch').find({ parent_id: id }, function(err, branch) {
+          if (err) return next(err);
+
+          if (!trunk) {
+            return res.status(404).send({ message: 'Trunk not found.' });
+          }
+          var data = [];
+          data.push(trunk);
+          data.push(branch);
+          res.send(data);
+      });
+      }
+  ]);
 });
 
+app.get('/api/branches/:id', function(req, res, next) {
+  var id = req.params.id;
+
+  async.waterfall([
+    function(callback) {
+      mongoose.model('Branch').findById(id, function(err, branch) {
+        if (err) return next(err);
+
+        if (!branch) {
+          return res.status(404).send({ message: 'Branch not found.' });
+        }
+        callback(null, branch);
+      });
+      },
+      function(branch) {
+        mongoose.model('Branch').find({ parent_id: id }, function(err, branch_of_branch) {
+          if (err) return next(err);
+
+          if (!branch_of_branch) {
+            return res.status(404).send({ message: 'Branch not found.' });
+          }
+          var data = [];
+          data.push(branch);
+          data.push(branch_of_branch);
+          res.send(data);
+      });
+      }
+  ]);
+});
 
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {

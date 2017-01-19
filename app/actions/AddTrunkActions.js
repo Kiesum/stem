@@ -15,7 +15,7 @@ class AddTrunkActions {
   addTrunk(title, body) {
     $.ajax({
       type: 'POST',
-      url: '/api/trunk',
+      url: '/api/trunks/new',
       data: { title: title, body: body }
     })
       .done((data) => {

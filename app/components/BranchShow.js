@@ -1,23 +1,23 @@
 import React from 'react';
 import {Link} from 'react-router';
-import TrunkShowStore from '../stores/TrunkShowStore';
-import TrunkShowActions from '../actions/TrunkShowActions'
+import BranchShowStore from '../stores/BranchShowStore';
+import BranchShowActions from '../actions/BranchShowActions';
 import AddBranch from './AddBranch';
 
 class TrunkShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = TrunkShowStore.getState();
+    this.state = BranchShowStore.getState();
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    TrunkShowStore.listen(this.onChange);
-    TrunkShowActions.getTrunkShow(this.props.params.id);
+    BranchShowStore.listen(this.onChange);
+    BranchShowActions.getBranchShow(this.props.params.id);
   }
 
   componentWillUnmount() {
-    TrunkShowStore.unlisten(this.onChange);
+    BranchShowStore.unlisten(this.onChange);
   }
 
   componentDidUpdate(prevProps) {
@@ -26,6 +26,12 @@ class TrunkShow extends React.Component {
   onChange(state) {
     this.setState(state);
   }
+
+  componentWillReceiveProps(nextProps) {
+    BranchShowActions.getBranchShow(nextProps.params.id);
+  }
+
+
 
   render() {
     return (

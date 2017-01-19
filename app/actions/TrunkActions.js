@@ -9,7 +9,7 @@ class TrunkActions {
   }
 
   getTrunks() {
-    $.ajax({ url: '/api/trunk' })
+    $.ajax({ url: '/api/trunks' })
       .done(data => {
         this.actions.getTrunksSuccess(data);
       })

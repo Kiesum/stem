@@ -1,25 +1,25 @@
 import alt from '../alt';
-import TrunkShowActions from '../actions/TrunkShowActions';
+import BranchShowActions from '../actions/BranchShowActions';
 
-class TrunkShowStore {
+class BranchShowStore {
   constructor() {
-    this.bindActions(TrunkShowActions);
-    this.trunkId = 0;
+    this.bindActions(BranchShowActions);
+    this.branchId = 0;
     this.title = 'TBD';
     this.body = 'TBD';
     this.branches = [];
   }
 
-  onGetTrunkShowSuccess(data) {
+  onGetBranchShowSuccess(data) {
     this.title = data[0].title;
     this.body = data[0].body;
     this.branches = data[1];
   }
 
-  onGetTrunkShowFail(jqXhr) {
+  onGetBranchShowFail(jqXhr) {
     toastr.error(jqXhr.responseJSON.message);
   }
 
 }
 
-export default alt.createStore(TrunkShowStore);
+export default alt.createStore(BranchShowStore);
