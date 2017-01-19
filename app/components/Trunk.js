@@ -30,20 +30,19 @@ class Trunk extends React.Component {
 
   render() {
     return (
-      <div className='container'>
+      <div>
         <h2 className='text-center'>Trunks</h2>
-        <div className='row'>
+        <div>
           { this.state.trunks.map((trunk, index)  =>  {
             return (
               <div key={trunk._id} >
-                <div>
-                  <div className='caption text-center'>
-                    <Link to={'/trunks/' + trunk._id}>See branches</Link>
-                    <ul className='list-inline'>
-                      <li><h3>{trunk.title}</h3></li>
-                      <li>{trunk.body}</li>
-                    </ul>
-                  </div>
+                <div className='post-container'>
+                  <h4 className="title">{trunk.title}</h4>
+                  <div className="body">{trunk.body}</div>
+                  <Link to={'/trunks/' + trunk._id} className="branches-link">See branches</Link>
+                  <div className='avatar'></div>
+                  <div className='branches'>x<span className='badge'>15</span></div>
+                  <div className='stars'>&#9733;<span className='badge'>10</span></div>
                 </div>
               </div>
             );

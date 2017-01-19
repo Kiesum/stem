@@ -61,10 +61,7 @@ class AddBranch extends React.Component {
             <span className='help-block'>{this.state.helpBlock}</span>
           </div>
           <div className={'form-group ' + this.state.bodyValidationState}>
-            <div className='radio radio-inline'>
-              <input type='text' className='form-control' ref='bodyTextField' value={this.state.body}
-                     onChange={AddBranchActions.updateBody}/>
-            </div>
+            <textarea value={this.state.body} onChange={AddBranchActions.updateBody} />
           </div>
           <button type='submit' className='btn btn-primary'>Submit</button>
         </form> 

@@ -29,23 +29,19 @@ class TrunkShow extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <h2><strong>{this.state.title}</strong></h2>
+      <div>
+        <h2>{this.state.title}</h2>
         <h4>{this.state.body}</h4>
-        <div className='container'>
+        <div>
           <h2 className='text-center'>Branches</h2>
-          <div className='row'>
+          <div>
             { this.state.branches.map((branch, index)  =>  {
               return (
                 <div key={branch._id} >
-                  <div>
-                    <div className='caption text-center'>
-                      <ul className='list-inline'>
-                      <Link to={'/branches/' + branch._id}>See branches</Link>
-                        <li><h3>{branch.title}</h3></li>
-                        <li>{branch.body}</li>
-                      </ul>
-                    </div>
+                  <div className='post-container'>
+                    <h3 className='title'>{branch.title}</h3>
+                    <div className='body'>{branch.body}</div>
+                    <Link to={'/branches/' + branch._id} className='branches-link'>See branches</Link>
                   </div>
                 </div>
               );
