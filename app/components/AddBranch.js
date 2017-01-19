@@ -53,15 +53,14 @@ class AddBranch extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <div className={'form-group ' + this.state.nameValidationState}>
-            <label className='control-label'>Title</label>
-            <input type='text' className='form-control' ref='titleTextField' value={this.state.title}
-                   onChange={AddBranchActions.updateTitle} autoFocus/>
+        <form onSubmit={this.handleSubmit.bind(this)} className='add-branch-form'>
+          <div className={this.state.nameValidationState}>
             <span className='help-block'>{this.state.helpBlock}</span>
+            <input type='text' placeholder='title' className='title-input' ref='titleTextField' value={this.state.title}
+                   onChange={AddBranchActions.updateTitle} autoFocus/>
           </div>
-          <div className={'form-group ' + this.state.bodyValidationState}>
-            <textarea value={this.state.body} onChange={AddBranchActions.updateBody} />
+          <div className={this.state.bodyValidationState}>
+            <textarea value={this.state.body} placeholder='write anything.' className='body-input' onChange={AddBranchActions.updateBody} />
           </div>
           <button type='submit' className='btn btn-primary'>Submit</button>
         </form> 

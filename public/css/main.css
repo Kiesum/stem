@@ -7348,3 +7348,19 @@ body {
   border-top: 1px solid #d6d6d6;
   color: blue;
 }
+/* Add branches form */
+.add-branch-form {
+  width: 500px;
+  margin: auto;
+}
+.add-branch-form .title-input {
+  width: 100%;
+  border: none;
+  padding: 1rem;
+}
+.add-branch-form .body-input {
+  width: 100%;
+  height: 150px;
+  border: none;
+  padding: 1rem;
+}
