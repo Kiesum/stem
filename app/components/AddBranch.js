@@ -1,6 +1,8 @@
 import React from 'react';
 import AddBranchStore from '../stores/AddBranchStore';
 import AddBranchActions from '../actions/AddBranchActions';
+import TrunkShowActions from '../actions/TrunkShowActions';
+import BranchShowActions from '../actions/BranchShowActions';
 
 class AddBranch extends React.Component {
   constructor(props) {
@@ -38,6 +40,12 @@ class AddBranch extends React.Component {
 
     if (title && body) {
       AddBranchActions.addBranch(parent, title, body);
+      if (this.props.props.route.path === "/trunks/:id") {
+        TrunkShowActions.getTrunkShow(this.props.props.params.id);
+      } else {
+        BranchShowActions.getBranchShow(this.props.props.params.id);
+      }
+
     }
 
   }
