@@ -7,6 +7,7 @@ class TrunkShowStore {
     this.trunkId = 0;
     this.title = 'TBD';
     this.body = 'TBD';
+    this.showAddBranch = false;
     this.branches = [];
   }
 

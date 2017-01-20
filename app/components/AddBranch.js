@@ -27,7 +27,7 @@ class AddBranch extends React.Component {
     event.preventDefault();
 
     var parent = this.props.props.params.id;
-    var title = this.state.title.trim();
+    var title = this.state.title;
     var body = this.state.body;
 
     if (!title) {
@@ -54,15 +54,16 @@ class AddBranch extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)} className='add-branch-form'>
+          <h3>Add a branch</h3>
           <div className={this.state.nameValidationState}>
             <span className='help-block'>{this.state.helpBlock}</span>
             <input type='text' placeholder='title' className='title-input' ref='titleTextField' value={this.state.title}
-                   onChange={AddBranchActions.updateTitle} autoFocus/>
+                   onChange={AddBranchActions.updateTitle} autoFocus />
           </div>
           <div className={this.state.bodyValidationState}>
             <textarea value={this.state.body} placeholder='write anything.' className='body-input' onChange={AddBranchActions.updateBody} />
           </div>
-          <button type='submit' className='btn btn-primary'>Submit</button>
+          <button type='submit' className='submit-btn'>Submit</button>
         </form> 
       </div>
       )

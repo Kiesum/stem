@@ -27,11 +27,23 @@ class TrunkShow extends React.Component {
     this.setState(state);
   }
 
+  onClick() {
+    if (this.state.showAddBranch === false) {
+      this.setState({ showAddBranch: true });
+    } else if (this.state.showAddBranch === true) {
+      this.setState({ showAddBranch: false})
+    }
+  }
+
   render() {
     return (
       <div>
-        <h2>{this.state.title}</h2>
-        <h4>{this.state.body}</h4>
+        <div className='post-container'>
+          <h3 className='title'>{this.state.title}</h3>
+          <div className='body'>{this.state.body}</div>
+          <button onClick={this.onClick.bind(this)} className="add-branch-toggle">Add Branch</button>
+        </div>
+        { this.state.showAddBranch ? <AddBranch props={this.props} /> : null }
         <div>
           <h2 className='text-center'>Branches</h2>
           <div>
@@ -49,7 +61,6 @@ class TrunkShow extends React.Component {
             }
           </div>
         </div>
-        <AddBranch props={this.props} />
       </div>
     );
   }

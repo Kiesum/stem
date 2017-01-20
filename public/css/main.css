@@ -7287,6 +7287,7 @@ img.mfp-img {
 /*
  * Bootstrap overrides.
  */
+/* General */
 html {
   position: relative;
   min-height: 100%;
@@ -7295,12 +7296,15 @@ body {
   margin-bottom: 220px;
   -webkit-font-smoothing: antialiased;
 }
+:focus {
+  outline: none;
+}
 /* Trunk and Branch components */
 .post-container {
   position: relative;
   width: 500px;
   background-color: white;
-  margin: 1rem auto;
+  margin: 2rem auto;
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 }
@@ -7350,8 +7354,15 @@ body {
 }
 /* Add branches form */
 .add-branch-form {
-  width: 500px;
+  width: 700px;
+  position: relative;
   margin: auto;
+  bottom: 0;
+  right: 0;
+  background: white;
+  z-index: 1000000;
+  padding: 1rem;
+  border-radius: 5px;
 }
 .add-branch-form .title-input {
   width: 100%;
@@ -7363,4 +7374,52 @@ body {
   height: 150px;
   border: none;
   padding: 1rem;
+}
+.add-branch-form .btn-container {
+  text-align: right;
+  margin: 1rem 0 0 0;
+}
+.add-branch-form .btn-container .submit-btn {
+  width: 100px;
+  background: white;
+  border: 1px solid blue;
+  color: blue;
+}
+.add-branch-form .clear-btn {
+  float: right;
+  opacity: 0;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.add-branch-form .clear-btn.show {
+  opacity: 0.75;
+}
+.add-trunk-toggle {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10000000;
+  width: 100px;
+  height: 50px;
+  border: 1px solid blue;
+  background: white;
+  color: blue;
+}
+.background-cover {
+  background: #000;
+  bottom: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  -webkit-transition: opacity .3s, bottom 0s .3s;
+  transition: opacity .3s, bottom 0s .3s;
+  z-index: 310;
+}
+.background-cover.show {
+  bottom: 0;
+  opacity: 0.6;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
 }

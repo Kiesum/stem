@@ -9,6 +9,7 @@ class AddTrunkStore {
     this.helpBlock = '';
     this.titleValidationState = '';
     this.bodyValidationState = '';
+    this.toggleBackgroundCover = 'show';
   }
 
   onAddTrunkSuccess(successMessage) {

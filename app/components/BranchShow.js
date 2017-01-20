@@ -39,6 +39,7 @@ class TrunkShow extends React.Component {
       <div>
         <h2><strong>{this.state.title}</strong></h2>
         <h4>{this.state.body}</h4>
+        <AddBranch props={this.props} />
         <div className='container'>
           <h2 className='text-center'>Branches</h2>
           <div>
@@ -56,7 +57,6 @@ class TrunkShow extends React.Component {
             }
           </div>
         </div>
-        <AddBranch props={this.props} />
       </div>
     );
   }

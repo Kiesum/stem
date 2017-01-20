@@ -11,6 +11,8 @@ class AddTrunk extends React.Component {
 
   componentDidMount() {
     AddTrunkStore.listen(this.onChange);
+    var css = "";
+    this.setState({"toggleBackgroundCover":css});
   }
 
   componentWillUnmount() {
@@ -41,19 +43,33 @@ class AddTrunk extends React.Component {
     }
   }
 
+  onClick(event) {
+    var css = "";
+    this.setState({"toggleBackgroundCover":css});
+  }
+
+  onFocus() {
+    var css = "show";
+    this.setState({"toggleBackgroundCover":css});
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit.bind(this)} className='add-branch-form'>
+        <div className={'background-cover ' + this.state.toggleBackgroundCover} onClick={this.onClick.bind(this)}></div>
+        <form onSubmit={this.handleSubmit.bind(this)} onFocus={this.onFocus.bind(this)} className='add-branch-form'>
+          <span className={'clear-btn ' + this.state.toggleBackgroundCover} onClick={this.onClick.bind(this)}>X</span>
           <div className={this.state.nameValidationState}>
             <span className='help-block'>{this.state.helpBlock}</span>
             <input type='text' placeholder='title' className='title-input' ref='titleTextField' value={this.state.title}
-                   onChange={AddTrunkActions.updateTitle} autoFocus/>
+                   onChange={AddTrunkActions.updateTitle} />
           </div>
           <div className={this.state.bodyValidationState}>
             <textarea value={this.state.body} placeholder='write anything.' className='body-input' onChange={AddTrunkActions.updateBody} />
           </div>
-          <button type='submit' className='btn btn-primary'>Submit</button>
+          <div className='btn-container'>
+            <button type='submit' className='submit-btn'>Submit</button>
+          </div>
         </form> 
       </div>
       )
