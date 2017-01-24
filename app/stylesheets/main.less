@@ -47,6 +47,9 @@
 
 @border-radius-md: 5px;
 
+
+@light-grey: #989898;
+
 /* General */
 
 html {
@@ -194,6 +197,38 @@ body {
     bottom: 0;
     opacity: 0.6;
     transition: opacity .3s;
+  }
+}
+
+/* Adding branch with draft.js */
+
+.DraftEditor-editorContainer {
+    min-height: 100px;
+    padding: 0.5rem;
+}
+
+.public-DraftEditorPlaceholder-root {
+    position: absolute;
+    padding: 0.5rem;
+}
+
+.public-DraftEditorPlaceholder-hasFocus {
+  color: @light-grey;
+}
+
+.RichEditor-controls {
+    display: inline-block;
+}
+
+.RichEditor-styleButton {
+  background: white;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 0.5rem;
+
+  &.RichEditor-activeButton {
+  background: grey;
+  color: white;
   }
 }
 

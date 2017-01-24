@@ -6694,7 +6694,7 @@ button.close {
   color: #FFFFFF;
 }
 .toast-message a:hover {
-  color: #CCCCCC;
+  color: #989898;
   text-decoration: none;
 }
 .toast-close-button {
@@ -7422,4 +7422,29 @@ body {
   opacity: 0.6;
   -webkit-transition: opacity .3s;
   transition: opacity .3s;
+}
+/* Adding branch with draft.js */
+.DraftEditor-editorContainer {
+  min-height: 100px;
+  padding: 0.5rem;
+}
+.public-DraftEditorPlaceholder-root {
+  position: absolute;
+  padding: 0.5rem;
+}
+.public-DraftEditorPlaceholder-hasFocus {
+  color: #989898;
+}
+.RichEditor-controls {
+  display: inline-block;
+}
+.RichEditor-styleButton {
+  background: white;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 0.5rem;
+}
+.RichEditor-styleButton.RichEditor-activeButton {
+  background: grey;
+  color: white;
 }

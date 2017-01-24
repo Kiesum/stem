@@ -1,7 +1,7 @@
 import alt from '../alt';
 import HomeActions from '../actions/HomeActions';
 
-class TrunkStore {
+class HomeStore {
   constructor() {
     this.bindActions(HomeActions);
     this.showAddBranch = false;
@@ -17,4 +17,4 @@ class TrunkStore {
 
 }
 
-export default alt.createStore(TrunkStore);
+export default alt.createStore(HomeStore);

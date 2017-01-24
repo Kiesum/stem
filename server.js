@@ -18,6 +18,7 @@ var xml2js = require('xml2js');
 var mongoose = require('mongoose');
 var Trunk = require('./models/trunk');
 var Branch = require('./models/branch');
+var Branchfull = require('./models/branchfull');
 var config = require('./config');
 
 mongoose.connect(config.database);
@@ -83,6 +84,28 @@ app.post('/api/branches/new', function(req, res, next) {
   ]);
 });
 
+app.post('/api/branchfulls/new', function(req, res, next) {
+  var data = req.body;
+
+  var parser = new xml2js.Parser();
+
+  async.waterfall([
+    function(callback) {
+      callback(null, data);
+    },
+    function(data) {
+        var branchfull = new Branchfull({
+          data: data,
+        });
+
+        branchfull.save(function(err) {
+          if (err) return next(err);
+          res.send({ message: data + ' has been added successfully!' });
+        });
+    }
+  ]);
+});
+
 app.get('/api/trunks', function(req, res, next) {
   Trunk.find()
    .exec(function(err, trunks) {
@@ -90,6 +113,18 @@ app.get('/api/trunks', function(req, res, next) {
 
       if (trunks.length > 0) {
         return res.send(trunks);
+      }
+
+    });
+});
+
+app.get('/api/branchfulls', function(req, res, next) {
+  Branchfull.find()
+   .exec(function(err, branchfulls) {
+      if (err) return next(err);
+
+      if (branchfulls.length > 0) {
+        return res.send(branchfulls);
       }
 
     });
@@ -188,6 +223,8 @@ io.sockets.on('connection', function(socket) {
     io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
   });
 });
+
+app.set('port',process.env.PORT || 8000);
 
 server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
