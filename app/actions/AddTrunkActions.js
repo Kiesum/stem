@@ -5,25 +5,23 @@ class AddTrunkActions {
     this.generateActions(
       'addTrunkSuccess',
       'addTrunkFail',
-      'updateTitle',
       'updateBody',
-      'invalidTitle',
       'invalidBody'
     );
   }
 
-  addTrunk(title, body) {
+  addTrunk(body) {
     $.ajax({
       type: 'POST',
       url: '/api/trunks/new',
-      data: { title: title, body: body }
+      data: { body: body }
     })
       .done((data) => {
         this.actions.addTrunkSuccess(data.message);
       })
       .fail((jqXhr) => {
         this.actions.addTrunkFail(jqXhr.responseJSON.message);
-      });
+      })
   }
 }
 

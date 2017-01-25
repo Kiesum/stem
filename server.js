@@ -36,23 +36,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/trunks/new', function(req, res, next) {
   var body = req.body.body;
-  var title = req.body.title;
 
   var parser = new xml2js.Parser();
 
   async.waterfall([
     function(callback) {
-      callback(null, title, body);
+      callback(null, body);
     },
-    function(title, body) {
+    function(body) {
         var trunk = new Trunk({
-          title: title,
           body: body,
         });
 
         trunk.save(function(err) {
           if (err) return next(err);
-          res.send({ message: title + ' has been added successfully!' });
+          res.send({ message: 'Trunk has been added successfully!' });
         });
     }
   ]);
@@ -61,50 +59,27 @@ app.post('/api/trunks/new', function(req, res, next) {
 app.post('/api/branches/new', function(req, res, next) {
   var parent_id = req.body.parent
   var body = req.body.body;
-  var title = req.body.title;
 
   var parser = new xml2js.Parser();
 
   async.waterfall([
     function(callback) {
-      callback(null, parent_id, title, body);
+      callback(null, parent_id, body);
     },
-    function(parent_id, title, body) {
+    function(parent_id, body) {
         var branch = new Branch({
           parent_id: parent_id,
-          title: title,
           body: body,
         });
 
         branch.save(function(err) {
           if (err) return next(err);
-          res.send({ message: title + ' has been added successfully!' });
+          res.send({ message: 'Branch has been added successfully!' });
         });
     }
   ]);
 });
 
-app.post('/api/branchfulls/new', function(req, res, next) {
-  var data = req.body;
-
-  var parser = new xml2js.Parser();
-
-  async.waterfall([
-    function(callback) {
-      callback(null, data);
-    },
-    function(data) {
-        var branchfull = new Branchfull({
-          data: data,
-        });
-
-        branchfull.save(function(err) {
-          if (err) return next(err);
-          res.send({ message: data + ' has been added successfully!' });
-        });
-    }
-  ]);
-});
 
 app.get('/api/trunks', function(req, res, next) {
   Trunk.find()
@@ -113,18 +88,6 @@ app.get('/api/trunks', function(req, res, next) {
 
       if (trunks.length > 0) {
         return res.send(trunks);
-      }
-
-    });
-});
-
-app.get('/api/branchfulls', function(req, res, next) {
-  Branchfull.find()
-   .exec(function(err, branchfulls) {
-      if (err) return next(err);
-
-      if (branchfulls.length > 0) {
-        return res.send(branchfulls);
       }
 
     });

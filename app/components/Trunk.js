@@ -29,20 +29,16 @@ class Trunk extends React.Component {
   }
 
   render() {
+    var trunksArray = this.state.trunks.reverse();
     return (
       <div>
-        <h2 className='text-center'>Trunks</h2>
         <div>
-          { this.state.trunks.map((trunk, index)  =>  {
+          { trunksArray.map((trunk, index)  =>  {
             return (
               <div key={trunk._id} >
                 <div className='post-container'>
-                  <h4 className="title">{trunk.title}</h4>
-                  <div className="body">{trunk.body}</div>
+                  <div className="body" dangerouslySetInnerHTML={{__html: trunk.body}}></div>
                   <Link to={'/trunks/' + trunk._id} className="branches-link">See branches</Link>
-                  <div className='avatar'></div>
-                  <div className='branches'>x<span className='badge'>15</span></div>
-                  <div className='stars'>&#9733;<span className='badge'>10</span></div>
                 </div>
               </div>
             );
@@ -53,5 +49,9 @@ class Trunk extends React.Component {
     );
   } 
 }
+
+// <div className='avatar'></div>
+// <div className='branches'>x<span className='badge'>15</span></div>
+// <div className='stars'>&#9733;<span className='badge'>10</span></div>
 
 export default Trunk;

@@ -70,20 +70,12 @@ body {
 
 .post-container {
   position: relative;
-  width: 500px;
+  width: 700px;
   background-color: white;
   margin: 2rem auto;
-  border: 1px solid;
-  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-  
-  & .title {
-    width: 450px;
-    font-weight: bold;
-    padding: 2rem 2rem 0 2rem;
-    margin: 0;
-  }
+  border-radius: @border-radius-md;
+
   & .body {
-    width: 450px;
     min-height: 110px;
     padding: 1rem 2rem;
   }
@@ -154,8 +146,18 @@ body {
     & .submit-btn {
       width: 100px;
       background: white;
-      border: 1px solid blue;
-      color: blue;
+      border: 1px solid grey;
+      color: grey;
+      cursor: initial;
+
+      &.active {
+        border-color: blue;
+        color: blue;
+        cursor: pointer;
+      }
+      &:focus {
+        outline: 1px solid blue;
+      }
     }
   }
   & .clear-btn {
@@ -220,15 +222,19 @@ body {
     display: inline-block;
 }
 
-.RichEditor-styleButton {
-  background: white;
-  border: 1px solid grey;
-  border-radius: 3px;
-  margin: 0.5rem;
+.editor-controls {
+  border-bottom: 1px solid @light-grey;
+}
 
+.RichEditor-styleButton {
+  background: transparent;
+  border: none;
+
+  &:hover {
+    color: blue;
+  }
   &.RichEditor-activeButton {
-  background: grey;
-  color: white;
+    color: blue;
   }
 }
 

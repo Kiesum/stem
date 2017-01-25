@@ -31,24 +31,30 @@ class TrunkShow extends React.Component {
     BranchShowActions.getBranchShow(nextProps.params.id);
   }
 
-
+  onClick() {
+    if (this.state.showAddBranch === false) {
+      this.setState({ showAddBranch: true });
+    } else if (this.state.showAddBranch === true) {
+      this.setState({ showAddBranch: false})
+    }
+  }
 
   render() {
     console.log(this.state)
     return (
       <div>
-        <h2><strong>{this.state.title}</strong></h2>
-        <h4>{this.state.body}</h4>
-        <AddBranch props={this.props} />
-        <div className='container'>
-          <h2 className='text-center'>Branches</h2>
+        <div className='post-container'>
+          <div className="body" dangerouslySetInnerHTML={{__html: this.state.body}}></div>
+          <button onClick={this.onClick.bind(this)} className="add-branch-toggle">Add Branch</button>
+        </div>
+        { this.state.showAddBranch ? <AddBranch props={this.props} /> : null }
+        <div>
           <div>
             { this.state.branches.map((branch, index)  =>  {
               return (
-                <div key={branch._id} >               
+                <div key={branch._id} >
                   <div className='post-container'>
-                    <h4 className='title'>{branch.title}</h4>
-                    <div className='body'>{branch.body}</div>
+                    <div className="body" dangerouslySetInnerHTML={{__html: branch.body}}></div>
                     <Link to={'/branches/' + branch._id} className='branches-link'>See branches</Link>
                   </div>
                 </div>

@@ -6,15 +6,11 @@ import AddTrunk from './components/AddTrunk';
 import TrunkShow from './components/TrunkShow';
 import TrunkComplete from './components/TrunkComplete';
 import BranchShow from './components/BranchShow';
-import AddBranchFull from './components/AddBranchFull';
-import BranchFull from './components/BranchFull';
 
 export default (
   <Route component={App}>
     <Route path='/' component={Home} />
     <Route path='/trunks/:id' component={TrunkShow} />
     <Route path='/branches/:id' component={BranchShow} />
-    <Route path='/sample' component={AddBranchFull} />
-    <Route path='/branchfulls' component={BranchFull} />
   </Route>
 );

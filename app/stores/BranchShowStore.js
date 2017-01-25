@@ -5,9 +5,8 @@ class BranchShowStore {
   constructor() {
     this.bindActions(BranchShowActions);
     this.parent_id = '';
-    this.branchId = 0;
-    this.title = 'TBD';
     this.body = 'TBD';
+    this.showAddBranch = false;
     this.branches = [];
   }
 

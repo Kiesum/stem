@@ -1,6 +1,6 @@
 import alt from '../alt';
 
-class AddBranchFullActions {
+class RichTextActions {
   constructor() {
     this.generateActions(
         'addBranchFullSuccess',
@@ -23,4 +23,4 @@ class AddBranchFullActions {
   }
 }
 
-export default alt.createActions(AddBranchFullActions);
+export default alt.createActions(RichTextActions);

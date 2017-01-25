@@ -5,19 +5,15 @@ class AddBranchActions {
     this.generateActions(
         'addBranchSuccess',
         'addBranchFail',
-        'updateParent',
-        'updateTitle',
-        'updateBody',
-        'invalidTitle',
         'invalidBody',
       )
   }
 
-  addBranch(parent, title, body) {
+  addBranch(body, parent) {
     $.ajax({
       type: 'POST',
       url: '/api/branches/new',
-      data: { parent: parent, title: title, body: body }
+      data: { body: body, parent: parent}
     })
       .done((data) => {
         this.actions.addBranchSuccess(data.message);

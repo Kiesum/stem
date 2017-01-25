@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AddBranchFullActions from '../actions/AddBranchFullActions';
+import RichTextActions from '../actions/RichTextActions';
 import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw, Immutable} from 'draft-js';
 import {convertToHTML} from 'draft-convert';
 
 var INLINE_STYLES = [
   {label: 'Bold', style: 'BOLD', className: 'bold'},
   {label: 'Italic', style: 'ITALIC', className: 'italic'},
-  {label: 'Underline', style: 'UNDERLINE', className: 'Underline'},
-  {label: 'Monospace', style: 'CODE', className: 'code'},
+  {label: 'Underline', style: 'UNDERLINE', className: 'underline'},
 ];
 
 class StyleButton extends React.Component {
@@ -90,7 +89,7 @@ const BlockStyleControls = (props) => {
 };
 
 
-class AddBranchFull extends React.Component {
+class RichText extends React.Component {
   constructor(props) {
     super(props);
     this.state = {editorState: EditorState.createEmpty()};
@@ -116,8 +115,9 @@ class AddBranchFull extends React.Component {
     var html = convertToHTML(this.state.editorState.getCurrentContent());
     var contentState = this.state.editorState.getCurrentContent();
     
-    if (contentState.hasText())
-      AddBranchFullActions.addBranchFull(html);
+    if (contentState.hasText()) {
+      RichTextActions.addBranchFull(html);
+    }
   }
 
   _toggleInlineStyle(inlineStyle) {
@@ -169,4 +169,4 @@ class AddBranchFull extends React.Component {
   }
 }
 
-export default AddBranchFull;
+export default RichText;

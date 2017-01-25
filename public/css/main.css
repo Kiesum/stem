@@ -7302,20 +7302,12 @@ body {
 /* Trunk and Branch components */
 .post-container {
   position: relative;
-  width: 500px;
+  width: 700px;
   background-color: white;
   margin: 2rem auto;
-  border: 1px solid;
-  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-}
-.post-container .title {
-  width: 450px;
-  font-weight: bold;
-  padding: 2rem 2rem 0 2rem;
-  margin: 0;
+  border-radius: 5px;
 }
 .post-container .body {
-  width: 450px;
   min-height: 110px;
   padding: 1rem 2rem;
 }
@@ -7382,8 +7374,17 @@ body {
 .add-branch-form .btn-container .submit-btn {
   width: 100px;
   background: white;
-  border: 1px solid blue;
+  border: 1px solid grey;
+  color: grey;
+  cursor: initial;
+}
+.add-branch-form .btn-container .submit-btn.active {
+  border-color: blue;
   color: blue;
+  cursor: pointer;
+}
+.add-branch-form .btn-container .submit-btn:focus {
+  outline: 1px solid blue;
 }
 .add-branch-form .clear-btn {
   float: right;
@@ -7438,13 +7439,16 @@ body {
 .RichEditor-controls {
   display: inline-block;
 }
+.editor-controls {
+  border-bottom: 1px solid #989898;
+}
 .RichEditor-styleButton {
-  background: white;
-  border: 1px solid grey;
-  border-radius: 3px;
-  margin: 0.5rem;
+  background: transparent;
+  border: none;
+}
+.RichEditor-styleButton:hover {
+  color: blue;
 }
 .RichEditor-styleButton.RichEditor-activeButton {
-  background: grey;
-  color: white;
+  color: blue;
 }

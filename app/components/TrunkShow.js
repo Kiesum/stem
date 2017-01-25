@@ -39,20 +39,17 @@ class TrunkShow extends React.Component {
     return (
       <div>
         <div className='post-container'>
-          <h3 className='title'>{this.state.title}</h3>
-          <div className='body'>{this.state.body}</div>
+          <div className="body" dangerouslySetInnerHTML={{__html: this.state.body}}></div>
           <button onClick={this.onClick.bind(this)} className="add-branch-toggle">Add Branch</button>
         </div>
         { this.state.showAddBranch ? <AddBranch props={this.props} /> : null }
         <div>
-          <h2 className='text-center'>Branches</h2>
           <div>
             { this.state.branches.map((branch, index)  =>  {
               return (
                 <div key={branch._id} >
                   <div className='post-container'>
-                    <h3 className='title'>{branch.title}</h3>
-                    <div className='body'>{branch.body}</div>
+                    <div className="body" dangerouslySetInnerHTML={{__html: branch.body}}></div>
                     <Link to={'/branches/' + branch._id} className='branches-link'>See branches</Link>
                   </div>
                 </div>

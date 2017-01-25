@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 
 var trunkSchema = new mongoose.Schema({
-  title: String,
-  body: String,
+  body: Object,
 });
 
 module.exports = mongoose.model('Trunk', trunkSchema);
